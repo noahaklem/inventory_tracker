@@ -1,0 +1,23 @@
+MODELS
+-- Warehouse --
+
+-- Products --
+
+DB
+Warehouse
+-- location -string
+
+Products
+-- Name -string
+-- Price -float
+-- Description -text
+
+products_warehouses -join table
+-- warehouse_id -integer
+-- products_id -integer
+
+
+
+
+
+
