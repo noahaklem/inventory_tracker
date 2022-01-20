@@ -2,5 +2,6 @@
 <h3><%= @product.price %></h3>
 <h3><%= @product.description %></h3>
 
+<%= link_to "Edit", posts_path
 <%= button_to "Delete", @product, method: :delete, data: { confirm: "Really?" } %>
 <%= link_to "Back",  %>
