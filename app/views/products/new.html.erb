@@ -1,0 +1,12 @@
+<%= form_tag posts_path do %>
+  <label>Product name:</label><br>
+  <%= text_field_tag :'product[name]' %><br>
+
+  <label>Product price:</label><br>
+  <%= text_field_tag :'product[price]' %><br>
+
+  <label>Product description:</label><br>
+  <%= text_area_tag :'product[description]' %><br>
+
+  <%= submit_tag "Submit Product" %>
+<% end %>

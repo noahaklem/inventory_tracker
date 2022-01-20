@@ -1,24 +1,30 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Welcome to Inventory Tracker. A simple way to keep track of all your products inside your warehouse. This application can ADD, EDIT, DELETE a product from a warehouse. You can also manage multiple warehouses. Those warehouses can have multiple products.
 
-Things you may want to cover:
+# Description
+This web application is made to be downloaded onto your own computer. Please use the GitHub repository to fork and clone this web application to you local machine.  
 
-* Ruby version
+# Fork and Clone
+Once forked and cloned, you can open the file on your machine with you favorite code editor. 
 
-* System dependencies
+# Terminal Commands
+Open a new terminal and run the command bundle install to download the dependencies.
 
-* Configuration
+Then run rails db:migrate to set up/initialize the database.
 
-* Database creation
+# View Test Environment
+Follow the terminal command prompts above.
 
-* Database initialization
+Then run rails db:seed to plant test data into the database.
 
-* How to run the test suite
+After that you can run rails s to start a server on your local machine. Follow the instruction, after the prompt, to navigate to the correct port. You will be able to sample the product CRUD actions. There is also CRUD actions for warehouses.
 
-* Services (job queues, cache servers, search engines, etc.)
+# Test Environment
+Follow the terinal command prompts above.
 
-* Deployment instructions
+Then run rails db:seed to plant test data into the database. (The seeds uses the "Faker" gem.)
 
-* ...
+Once completed run rails c to start a 'pry' environment. Here you can play around with the database information using ruby code inside your terminal.
+
+

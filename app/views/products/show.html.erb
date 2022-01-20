@@ -1,0 +1,6 @@
+<h1><%= @product.name %></h1>
+<h3><%= @product.price %></h3>
+<h3><%= @product.description %></h3>
+
+<%= button_to "Delete", @product, method: :delete, data: { confirm: "Really?" } %>
+<%= link_to "Back",  %>

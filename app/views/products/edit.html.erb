@@ -1,0 +1,14 @@
+<h3>Edit Product Form</h3>
+
+<%= form_tag product_path(@product), method: "put" do %>
+  <label>Product name:</label><br>
+  <%= text_field_tag :name, @product.name %><br>
+
+  <label>Product price</label><br>
+  <%= text_area_tag :price, @product.price %><br>
+
+  <label>Product description</label><br>
+  <%= text_area_tag :description, @product.description %><br>
+
+  <%= submit_tag "Edit Product" %>
+<% end %>
