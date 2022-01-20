@@ -14,8 +14,12 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
-    @product.save
-    redirect_to product_path(@post)
+    if @product.valid?
+      @product.save
+      redirect_to product_path(@post)
+    else
+      render :new
+    end
   end
 
   def edit
@@ -30,7 +34,7 @@ class ProductsController < ApplicationController
 
   def destroy
     Product.find(params[:id]).destroy
-    redirect_to product_url
+    redirect_to products_path
   end
 
   private

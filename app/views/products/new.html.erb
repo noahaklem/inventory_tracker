@@ -1,14 +1,32 @@
 <h1>Create a Product</h1>
 
-<%= form_for @product do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %><br>
+<div class="form">
+  <%= form_for @product do |f| %>
+    
+    <%= f.label :name %><br>
+    <%= f.text_field :name %><br>
+    <% if @product.errors[:name].any? %>
+      <% @product.errors[:name].each do |msg| %>
+        <div class="errors" ><%= msg %></div>
+      <% end %>
+    <% end %>
 
-  <%= f.label :price %>
-  <%= f.number_field :price, min: 1 %><br>
+    <%= f.label :price %><br>
+    <%= f.number_field :price, min: 1 %><br>
+    <% if @product.errors[:price].any? %>
+      <% @product.errors[:price].each do |msg| %>
+        <div class="errors" ><%= msg %></div>
+      <% end %>
+    <% end %>
 
-  <%= f.label :name %>
-  <%= f.text_field :name %><br>
+    <%= f.label :description %><br>
+    <%= f.text_area :description %><br>
+    <% if @product.errors[:description].any? %>
+      <% @product.errors[:description].each do |msg| %>
+        <div class="errors" ><%= msg %></div>
+      <% end %>
+    <% end %>
 
-  <%= f.submit %>
-<% end %>
+    <%= f.submit %>
+  <% end %>
+</div>
