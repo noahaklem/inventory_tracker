@@ -12,11 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2022_01_19_001235) do
 
-  create_table "product_warehouses", force: :cascade do |t|
-    t.integer "product_id"
-    t.integer "warehouse_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+  create_table "product_warehouses", id: false, force: :cascade do |t|
+    t.integer "product_id", null: false
+    t.integer "warehouse_id", null: false
   end
 
   create_table "products", force: :cascade do |t|

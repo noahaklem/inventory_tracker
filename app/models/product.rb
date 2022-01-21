@@ -11,4 +11,5 @@ class Product < ApplicationRecord
   validates :description, length: {maximum: 200}
 
   # validates :quantity, numericality: {greater_than_or_equal_to: 0}
+
 end

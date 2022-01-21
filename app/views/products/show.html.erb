@@ -2,6 +2,15 @@
 <h3><%= @product.price %></h3>
 <h3><%= @product.description %></h3>
 
+<h3>Available At:</h3>
+<ul>
+  <% if @product.warehouses %>
+    <% @product.warehouses.uniq.each do |w| %>
+      <li><%= link_to w.location, warehouse_path(w) %></li>
+    <% end %>
+  <% end %>
+</ul>
+
 <%= link_to "Back to Products", products_path %>
-<%= button_to "X", product_path(@product), method: :delete, data: {confirm: "You sure?"} %>
+<%= button_to "X", product_path(@product), method: :delete, data: {confirm: "Are you sure?"}, form_class: "delete_btn" %>
 
