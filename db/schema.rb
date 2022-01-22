@@ -10,17 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_19_001235) do
-
-  create_table "product_warehouses", id: false, force: :cascade do |t|
-    t.integer "product_id", null: false
-    t.integer "warehouse_id", null: false
-  end
+ActiveRecord::Schema.define(version: 2022_01_22_211030) do
 
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.float "price"
     t.text "description"
+    t.integer "quantity"
+    t.integer "warehouse_id"
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_products_on_user_id"
+    t.index ["warehouse_id"], name: "index_products_on_warehouse_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

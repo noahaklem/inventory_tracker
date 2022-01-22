@@ -1,7 +1,13 @@
 class ProductsController < ApplicationController
 
   def index
-    @products = Product.all
+    @warehouses = Warehouse.all
+
+    if !params[:warehouse].blank?
+      @products = Product.by_warehouse(params[:warehouse])
+    else
+      @products = Product.all
+    end
   end
 
   def show
@@ -40,6 +46,6 @@ class ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product).permit(:name, :price, :description, warehouse_ids: [])
+    params.require(:product).permit(:name, :price, :description, :quantity, warehouse_ids: [])
   end
 end

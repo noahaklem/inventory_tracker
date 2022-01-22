@@ -5,22 +5,40 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-5.times do 
+4.times do 
   location = Faker::Nation.capital_city
-  Warehouse.create({
+  Warehouse.create(
     location: location
-  })
+  )
+end
+
+3.times do 
+  name = Faker::Superhero.unique.name
+  email = Faker::Internet.email
+  User.create(
+    name: name, 
+    email: email, 
+    password_digest: "test"
+  )
 end
 
 15.times do
-  name = Faker::Superhero.unique.name
+  name = Faker::Artist.unique.name
   price = [2,30,22,1,3.25,4.50].sample
-  description = Faker::Hipster.sentence
-  Product.create(name: name, price: price, description: description)
+  description = Faker::Quote.most_interesting_man_in_the_world
+  quantity = [300,12,16,1,5,36,80].sample
+  warehouse = Warehouse.all.sample
+  user = User.all.sample
+  Product.create(
+    name: name, 
+    price: price, 
+    description: description, 
+    quantity: quantity, 
+    warehouse: warehouse,
+    user: user
+  )
 end
 
-10.times do 
-  ProductWarehouse.create(product: Product.all.sample, warehouse: Warehouse.all.sample)
-end
+
 
 puts "seeds completed"

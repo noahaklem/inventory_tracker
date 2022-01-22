@@ -1,15 +1,14 @@
 <h1><%= @product.name %></h1>
-<h3><%= number_to_currency(@product.price) %></h3>
-<h3><%= @product.description %></h3>
+<h3>Price: <%= number_to_currency(@product.price) %></h3>
+<h3>Description: <%= @product.description %></h3>
+<h3>Quantity: <%= @product.quantity %></h3>
 
 <h3>Available At:</h3>
-<ul>
-  <% if @product.product_warehouses %>
-    <% @product.product_warehouses.each do |w| %>
-      <li><%= link_to w.warehouse.location, warehouse_path(w.warehouse) %></li>
-    <% end %>
-  <% end %>
-</ul>
+<div>
+  <%= link_to @product.warehouse.location, warehouse_path(@product.warehouse) %>
+</div><br>
+
+
 
 <%= link_to "Back to Products", products_path %>
 <%= button_to "X", product_path(@product), method: :delete, data: {confirm: "Are you sure?"}, form_class: "delete_btn" %>

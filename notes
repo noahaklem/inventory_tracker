@@ -1,39 +1,34 @@
 MODELS
--- (join) Product_warehouses --
-belongs_to warehouse
-belongs_to product
-
 -- Warehouse --
-has_many product_warehouses
-has_many products, through product_warehouses
+has_many products
+has_many users, through products
 
--- Products --
-has_many product_warehouse
-has_many warehouses, through product_warehouses
+-- Product --
+has_many warehouses
 belongs_to user
 
 -- User --
-belongs_to a warehouse
 has_many products
+has_many warehouses through products
 
 DB
 Warehouse
 -- location -string
+-- product
 
 Products
--- Name -string
--- Price -float
--- Description -text
--- Quantity -integer
--- user_id -integer
+-- name -string
+-- price -float
+-- description -text
+-- quantity -integer
+-- warehouse
+-- user 
 
 User
--- Username -string
+-- name
+-- username -string
 -- password_digest -bcrypt
 
-products_warehouses -join table
--- warehouse_id -integer
--- products_id -integer
 
 css classes
 -- errors

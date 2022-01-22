@@ -2,12 +2,12 @@
 
 <h3>List of <%= pluralize(@warehouse.products.uniq.count, 'Product') %></h3>
 <ul>
-  <% @warehouse.product_warehouses.each do |p| %>
+  <% @warehouse.products.each do |p| %>
     <li>
-      Name: <%= link_to p.product.name, product_path(p.product) %><br>
-      Price: $<%= p.product.price%><br>
-      Description: <%= p.product.description %><br>
-      Quantity: 
+      Name: <%= link_to p.name, product_path(p) %><br>
+      Price: $<%= p.price%><br>
+      Description: <%= p.description %><br>
+      Quantity: <%= p.quantity %><br>
     </li>
   <% end %>
 </ul>
