@@ -8,5 +8,5 @@ Rails.application.routes.draw do
   delete '/products/:id', to: 'products#destroy'
 
   # warehouse routes
-  resources :warehouses
+  resources :warehouses, only: [:index, :show]
 end
