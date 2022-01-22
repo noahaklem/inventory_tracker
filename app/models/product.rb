@@ -1,6 +1,8 @@
 class Product < ApplicationRecord
   has_many :product_warehouses
   has_many :warehouses, through: :product_warehouses
+
+  accepts_nested_attributes_for :warehouses
   
   validates :name, :price, presence: true
   validates :name, uniqueness: true
@@ -12,4 +14,11 @@ class Product < ApplicationRecord
 
   # validates :quantity, numericality: {greater_than_or_equal_to: 0}
 
+  def warehouse_location=(location)
+    self.warehouse = Warehouse.find_or_create_by(location: location)
+  end
+
+  def warehouse_location
+    # self.warehouse ? self.warehouse.location : nil
+  end
 end

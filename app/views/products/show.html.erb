@@ -1,12 +1,12 @@
 <h1><%= @product.name %></h1>
-<h3><%= @product.price %></h3>
+<h3><%= number_to_currency(@product.price) %></h3>
 <h3><%= @product.description %></h3>
 
 <h3>Available At:</h3>
 <ul>
-  <% if @product.warehouses %>
-    <% @product.warehouses.uniq.each do |w| %>
-      <li><%= link_to w.location, warehouse_path(w) %></li>
+  <% if @product.product_warehouses %>
+    <% @product.product_warehouses.each do |w| %>
+      <li><%= link_to w.warehouse.location, warehouse_path(w.warehouse) %></li>
     <% end %>
   <% end %>
 </ul>

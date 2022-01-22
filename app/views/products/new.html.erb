@@ -27,6 +27,9 @@
       <% end %>
     <% end %>
 
+    <h5>Select Location(s)</h5>
+    <%= f.collection_check_boxes :warehouse_ids, Warehouse.all, :id, :location %><br>
+    
     <%= f.submit %>
   <% end %>
 </div>

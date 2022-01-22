@@ -1,0 +1,7 @@
+<h1>All Warehouses</h1>
+
+<ul>
+  <% @warehouses.each do |w| %>
+    <li>View <%= link_to w.products.count, warehouse_path(w) %> products at <%= link_to w.location, warehouse_path(w) %> Location</li>
+  <% end %>
+</ul>
