@@ -1,0 +1,32 @@
+<%= form_for @product do |f| %>
+    
+  <%= f.label :name %><br>
+  <%= f.text_field :name %><br>
+  <% if @product.errors[:name].any? %>
+    <% @product.errors[:name].each do |msg| %>
+      <div class="errors" ><%= msg %></div>
+    <% end %>
+  <% end %>
+
+  <%= f.label :price %><br>
+  <%= f.number_field :price, min: 1 %><br>
+  <% if @product.errors[:price].any? %>
+    <% @product.errors[:price].each do |msg| %>
+      <div class="errors" ><%= msg %></div>
+    <% end %>
+  <% end %>
+
+  <%= f.label :description %><br>
+  <%= f.text_area :description %><br>
+  <% if @product.errors[:description].any? %>
+    <% @product.errors[:description].each do |msg| %>
+      <div class="errors" ><%= msg %></div>
+    <% end %>
+  <% end %>
+
+  <h3>Select Location(s)</h3>
+  <%= f.collection_check_boxes :warehouse_ids, Warehouse.all, :id, :location %><br>
+
+  
+  <%= f.submit %>
+<% end %>
