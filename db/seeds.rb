@@ -6,9 +6,9 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 4.times do 
-  location = Faker::Nation.capital_city
+  name = Faker::Nation.capital_city
   Warehouse.create(
-    location: location
+    name: name
   )
 end
 

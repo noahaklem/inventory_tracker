@@ -1,10 +1,8 @@
 class ProductsController < ApplicationController
 
   def index
-    @warehouses = Warehouse.all
-
-    if !params[:warehouse].blank?
-      @products = Product.by_warehouse(params[:warehouse])
+    if params[:warehouse_id]
+      @products = Warehouse.find(params[:warehouse_id]).products
     else
       @products = Product.all
     end

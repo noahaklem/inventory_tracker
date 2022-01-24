@@ -1,13 +1,20 @@
-<h1><%= @warehouse.location %></h1>
+<h1><%= @warehouse.name %></h1>
 
-<h3>List of <%= pluralize(@warehouse.products.uniq.count, 'Product') %></h3>
-<ul>
+<h3>Products</h3>
+
+<table>
+  <tr class="header-container">
+    <th class="header">Name</th>
+    <th class="header">Description</th>
+    <th class="header">Price</th>
+    <th class="header">Quantity</th>
+  </tr>
   <% @warehouse.products.each do |p| %>
-    <li>
-      Name: <%= link_to p.name, product_path(p) %><br>
-      Price: $<%= p.price%><br>
-      Description: <%= p.description %><br>
-      Quantity: <%= p.quantity %><br>
-    </li>
+    <tr class="data-row">
+      <td class="data"><%= link_to p.name, product_path(p) %></td>
+      <td class="data"><%= p.description %></td>
+      <td class="data"><%= p.price %></td>
+      <td class="data"><%= p.quantity %></td>
+    </tr>
   <% end %>
-</ul>
+</table>

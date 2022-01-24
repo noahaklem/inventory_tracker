@@ -1,7 +1,7 @@
 class WarehousesController < ApplicationController
 
   def index
-    @warehouses = Warehouse.all
+   @warehouses = Warehouse.all
   end
 
   def show
@@ -9,24 +9,37 @@ class WarehousesController < ApplicationController
   end
 
   def edit
+    @warehouse = Warehouse.find(params[:id])
   end
 
   def new
-  end
-
-  def update
-  
+    @warehouse = Warehouse.new
   end
 
   def create
+    @warehouse = Warehouse.new(warehouse_params)
+    if @warehouse.valid?
+      @warehouse.save
+      redirect_to warehouses_path
+    else
+      render 'new'
+    end
+  end
+
+  def update
+    @warehouse = Warehouse.find(params[:id])
+    @warehouse.update(warehouse_params)
+    redirect_to warehouse_path(@warehouse)
   end
 
   def destroy
+    Warehouse.find(params[:id]).destroy
+    redirect_to warehouses_path
   end
 
   private
 
   def warehouse_params
-    params.require(:warehouse).permit(:location)
+    params.require(:warehouse).permit(:name, product_ids: [])
   end
 end

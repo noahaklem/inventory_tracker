@@ -1,15 +1,10 @@
-<h1>All Products</h1>
+<h1>Products</h1>
 
-<h3>Filter By Warehouse</h3>
-<div>
-  <%= form_tag '/products', method: 'get' do %>
-    <%= select_tag "warehouse", options_from_collection_for_select(@warehouses, "id", "location"), include_blank: true %>
-    <%= submit_tag "Filter" %>
-  <% end %>
-</div>
 <ul>
-  <% @products.each do |product| %>
-    <li><%= link_to product.name, product_path(product) %></li>
+  <% @products.each do |p| %>
+    <li><%= link_to p.name %></li>
   <% end %>
 </ul>
+
+
 

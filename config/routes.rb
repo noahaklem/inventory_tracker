@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
-  
-  resources :users
-  root 'products#index'
 
+  root 'warehouses#index'
+
+  # user routes
+  resources :users, only: [:new]
   # product routes
-  resources :products, only: [:index, :show, :new, :create, :edit, :update, :delete]
-
+  resources :products
   # warehouse routes
-  resources :warehouses, only: [:index, :show] do 
-    resources :products, only: [:index, :show]
+  resources :warehouses do 
+    resources :products, only: [:index, :show, :new, :create, :edit, :update, :delete]
   end
 end

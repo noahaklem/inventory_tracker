@@ -33,7 +33,7 @@
   <% end %>
 
   <h3>Select Location(s)</h3>
-  <%= f.collection_check_boxes :warehouse_ids, Warehouse.all, :id, :location %><br>
+  <%= f.collection_check_boxes :warehouse_ids, Warehouse.all, :id, :name %><br>
 
   
   <%= f.submit %>

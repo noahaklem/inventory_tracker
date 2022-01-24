@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 2022_01_22_211030) do
   end
 
   create_table "warehouses", force: :cascade do |t|
-    t.string "location"
+    t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

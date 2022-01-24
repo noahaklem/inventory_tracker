@@ -1,7 +1,14 @@
-<h1>All Warehouses</h1>
+<h1>Warehouses</h1>
 
-<ul>
+<%= button_to "+", new_warehouse_path , method: "get", action: "new" %>
+
+<div class="container">
   <% @warehouses.each do |w| %>
-    <li>View <%= link_to w.products.count, warehouse_path(w) %> products at <%= link_to w.location, warehouse_path(w) %> Location</li>
+    <div class="warehouse">
+    <%= w.name %>
+    <%= link_to "Show", warehouse_path(w) %>
+    <%= link_to "Edit", edit_warehouse_path(w) %>
+    <%= button_to "Delete", warehouse_path(w), method: :delete, form_class: "delete_btn" %>
+    </div>
   <% end %>
-</ul>
+</div>
