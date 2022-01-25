@@ -1,7 +1,10 @@
+
 <%= form_for @warehouse do |f| %>
   
   <%= f.label :name %><br>
   <%= f.text_field :name %><br>
 
   <%= f.submit %>
-<% end %>
+<% end %><br>
+
+<%= button_to "Back", warehouses_path, method: :get, action: :index %>

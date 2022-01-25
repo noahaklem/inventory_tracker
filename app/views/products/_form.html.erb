@@ -1,4 +1,4 @@
-<%= form_for @product do |f| %>
+<%= form_for [@warehouse, @product] do |f| %>
     
   <%= f.label :name %><br>
   <%= f.text_field :name %><br>
@@ -25,16 +25,15 @@
   <% end %>
 
   <%= f.label :quantity %><br>
-  <%= f.text_area :quantity %><br>
+  <%= f.number_field :quantity %><br>
   <% if @product.errors[:quantity].any? %>
     <% @product.errors[:quantity].each do |msg| %>
       <div class="errors" ><%= msg %></div>
     <% end %>
   <% end %>
 
-  <h3>Select Location(s)</h3>
-  <%= f.collection_check_boxes :warehouse_ids, Warehouse.all, :id, :name %><br>
-
+  <h3>Add to Warehouse</h3>
+  <%= f.collection_select :warehouse_id, Warehouse.all, :id, :name %><br>
   
-  <%= f.submit %>
+  <br><%= f.submit %>
 <% end %>

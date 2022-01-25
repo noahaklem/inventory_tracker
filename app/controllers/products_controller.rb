@@ -2,6 +2,7 @@ class ProductsController < ApplicationController
 
   def index
     if params[:warehouse_id]
+      @warehouse = Warehouse.find(params[:warehouse_id])
       @products = Warehouse.find(params[:warehouse_id]).products
     else
       @products = Product.all
@@ -17,12 +18,13 @@ class ProductsController < ApplicationController
   end
 
   def create
+    byebug
     @product = Product.new(product_params)
     if @product.valid?
       @product.save
-      redirect_to product_path(@product)
+      redirect_to warehouse_product_path(@warehouse, @product)
     else
-      render :new
+      redirect_to new_warehouse_product_path
     end
   end
 
@@ -44,6 +46,6 @@ class ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product).permit(:name, :price, :description, :quantity, warehouse_ids: [])
+    params.require(:product).permit(:name, :price, :description, :quantity, :warehouse_id)
   end
 end

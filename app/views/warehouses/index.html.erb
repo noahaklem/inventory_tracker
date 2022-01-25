@@ -1,14 +1,19 @@
 <h1>Warehouses</h1>
 
-<%= button_to "+", new_warehouse_path , method: "get", action: "new" %>
+<table>
+  <tr class="header-container">
+    <th class="header">Name</th>
+    <th class="header"><%= button_to "+", new_warehouse_path , method: "get", action: "new" %></th>
+  </tr>
 
-<div class="container">
   <% @warehouses.each do |w| %>
-    <div class="warehouse">
-    <%= w.name %>
-    <%= link_to "Show", warehouse_path(w) %>
-    <%= link_to "Edit", edit_warehouse_path(w) %>
-    <%= button_to "Delete", warehouse_path(w), method: :delete, form_class: "delete_btn" %>
-    </div>
+    <tr class="data-container">
+      <td class="data"><%= w.name %></td>
+      <td class="data"><%= link_to "Show", warehouse_products_path(w) %></td>
+      <td class="data"><%= link_to "Edit", edit_warehouse_path(w) %></td>
+      <td class="data">
+        <%= button_to "Delete", warehouse_path(w), method: :delete, form_class: "delete_btn" %>
+      </td>
+    </tr>
   <% end %>
-</div>
+</table>

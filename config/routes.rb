@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   # product routes
   resources :products
   # warehouse routes
-  resources :warehouses do 
-    resources :products, only: [:index, :show, :new, :create, :edit, :update, :delete]
+  resources :warehouses, only: [:new, :create, :index, :edit, :update, :destroy] do 
+    resources :products
   end
 end

@@ -29,7 +29,7 @@ class WarehousesController < ApplicationController
   def update
     @warehouse = Warehouse.find(params[:id])
     @warehouse.update(warehouse_params)
-    redirect_to warehouse_path(@warehouse)
+    redirect_to warehouses_path
   end
 
   def destroy
@@ -40,6 +40,6 @@ class WarehousesController < ApplicationController
   private
 
   def warehouse_params
-    params.require(:warehouse).permit(:name, product_ids: [])
+    params.require(:warehouse).permit(:name)
   end
 end
