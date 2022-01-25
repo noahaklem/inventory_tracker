@@ -1,6 +1,7 @@
 class Warehouse < ApplicationRecord
-  has_many :products
-  has_many :users, -> { distinct }, through: :products
+  belongs_to :user
+  has_many :warehouse_products 
+  has_many :products, through: :warehouse_products
 
   validates :name, presence: true, uniqueness: true
 end

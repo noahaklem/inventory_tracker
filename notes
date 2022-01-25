@@ -1,28 +1,29 @@
 MODELS
 -- Warehouse --
-has_many products
-has_many users, through products
+belongs_to user
+belongs_to product
 
 -- Product --
 has_many warehouses
 belongs_to user
 
 -- User --
+has_many warehouses
 has_many products
-has_many warehouses through products
+  through warehouses
 
 DB
 Warehouse
--- location -string
--- product
+-- name -string
+-- product belongs_to
+-- user belongs_to
 
 Products
 -- name -string
 -- price -float
 -- description -text
 -- quantity -integer
--- warehouse
--- user 
+-- user belongs_to
 
 User
 -- name

@@ -2,8 +2,7 @@ class ProductsController < ApplicationController
 
   def index
     if params[:warehouse_id]
-      @warehouse = Warehouse.find(params[:warehouse_id])
-      @products = Warehouse.find(params[:warehouse_id]).products
+      @products = Warehouse.find(params[:warehouse_id])
     else
       @products = Product.all
     end
@@ -22,7 +21,7 @@ class ProductsController < ApplicationController
     @product = Product.new(product_params)
     if @product.valid?
       @product.save
-      redirect_to warehouse_product_path(@warehouse, @product)
+      redirect_to warehouse_product_path(@product)
     else
       redirect_to new_warehouse_product_path
     end

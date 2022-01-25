@@ -4,7 +4,13 @@
   <%= f.label :name %><br>
   <%= f.text_field :name %><br>
 
-  <%= f.submit %>
+  <h3>Add to User</h3>
+  <%= f.collection_select :user_id, User.all, :id, :name %><br>
+
+  <h3>Add a Product</h3>
+  <%= f.collection_select :product_id, Product.all, :id, :name %><br>
+
+  <br><%= f.submit %>
 <% end %><br>
 
 <%= button_to "Back", warehouses_path, method: :get, action: :index %>

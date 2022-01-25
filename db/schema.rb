@@ -10,19 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_22_211030) do
+ActiveRecord::Schema.define(version: 2022_01_25_214306) do
 
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.float "price"
     t.text "description"
     t.integer "quantity"
-    t.integer "warehouse_id"
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_products_on_user_id"
-    t.index ["warehouse_id"], name: "index_products_on_warehouse_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -33,10 +31,19 @@ ActiveRecord::Schema.define(version: 2022_01_22_211030) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "warehouse_products", id: false, force: :cascade do |t|
+    t.integer "warehouse_id"
+    t.integer "product_id"
+    t.index ["product_id"], name: "index_warehouse_products_on_product_id"
+    t.index ["warehouse_id"], name: "index_warehouse_products_on_warehouse_id"
+  end
+
   create_table "warehouses", force: :cascade do |t|
     t.string "name"
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_warehouses_on_user_id"
   end
 
 end

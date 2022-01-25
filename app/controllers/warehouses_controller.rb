@@ -40,6 +40,6 @@ class WarehousesController < ApplicationController
   private
 
   def warehouse_params
-    params.require(:warehouse).permit(:name)
+    params.require(:warehouse).permit(:name, :user_id, :product_id)
   end
 end
