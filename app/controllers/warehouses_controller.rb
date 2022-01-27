@@ -1,15 +1,11 @@
 class WarehousesController < ApplicationController
-
+  # set a before_action for User
   def index
-   @warehouses = Warehouse.all
+    @warehouses = Warehouse.all
   end
 
-  def show
-    @warehouse = Warehouse.find(params[:id])
-  end
-
-  def edit
-    @warehouse = Warehouse.find(params[:id])
+  def show 
+    
   end
 
   def new
@@ -22,8 +18,12 @@ class WarehousesController < ApplicationController
       @warehouse.save
       redirect_to warehouses_path
     else
-      render 'new'
+      redirect_to new_warehouse_path
     end
+  end
+
+  def edit 
+    @warehouse = Warehouse.find(params[:id])
   end
 
   def update
@@ -38,8 +38,8 @@ class WarehousesController < ApplicationController
   end
 
   private
-
+  
   def warehouse_params
-    params.require(:warehouse).permit(:name, :user_id, :product_id)
+    params.require(:warehouse).permit(:name, :user_id, product_ids: [])
   end
 end

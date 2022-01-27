@@ -1,39 +1,31 @@
 <%= form_for [@warehouse, @product] do |f| %>
-    
   <%= f.label :name %><br>
   <%= f.text_field :name %><br>
-  <% if @product.errors[:name].any? %>
-    <% @product.errors[:name].each do |msg| %>
-      <div class="errors" ><%= msg %></div>
-    <% end %>
-  <% end %>
 
   <%= f.label :price %><br>
   <%= f.number_field :price, min: 1 %><br>
-  <% if @product.errors[:price].any? %>
-    <% @product.errors[:price].each do |msg| %>
-      <div class="errors" ><%= msg %></div>
-    <% end %>
-  <% end %>
 
   <%= f.label :description %><br>
   <%= f.text_area :description %><br>
-  <% if @product.errors[:description].any? %>
-    <% @product.errors[:description].each do |msg| %>
-      <div class="errors" ><%= msg %></div>
-    <% end %>
-  <% end %>
 
   <%= f.label :quantity %><br>
-  <%= f.number_field :quantity %><br>
-  <% if @product.errors[:quantity].any? %>
-    <% @product.errors[:quantity].each do |msg| %>
-      <div class="errors" ><%= msg %></div>
-    <% end %>
-  <% end %>
+  <%= f.number_field :quantity, min: 1 %><br>
 
-  <h3>Add to Warehouse</h3>
-  <%= f.collection_select :warehouse_id, Warehouse.all, :id, :name %><br>
-  
+  <h3>Add to User</h3>
+  <%= f.collection_select :user_id, User.all, :id, :name %><br>
+
+  <h3>Which Warehouses: </h3>
+  <table>
+    <tr class="header_container">
+      <th class="header"></th>
+      <th class="header">Name</th>
+    </tr>
+    <%= f.collection_check_boxes :warehouse_ids, Warehouse.all, :id, :name do |b| %>
+      <tr class="data_container">
+        <td class="data"> <%= b.check_box %> </td>
+        <td> <%= b.text %> </td>
+      </tr>
+    <% end %><br>
+  </table>
   <br><%= f.submit %>
-<% end %>
+<% end %><br>

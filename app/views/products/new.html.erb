@@ -1,5 +1,5 @@
-<h1>Create a Product</h1>
+<h1>Create New Product for <%= @warehouse.name %></h1>
 
-<div class="form">
-<%= render partial: 'form' %>
-</div>
+<%= render 'form' %>
+
+<%= button_to "Back", warehouse_products_path(@warehouse), method: :get%>

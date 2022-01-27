@@ -34,6 +34,8 @@ ActiveRecord::Schema.define(version: 2022_01_25_214306) do
   create_table "warehouse_products", id: false, force: :cascade do |t|
     t.integer "warehouse_id"
     t.integer "product_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["product_id"], name: "index_warehouse_products_on_product_id"
     t.index ["warehouse_id"], name: "index_warehouse_products_on_warehouse_id"
   end

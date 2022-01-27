@@ -1,16 +1,24 @@
-
 <%= form_for @warehouse do |f| %>
-  
-  <%= f.label :name %><br>
-  <%= f.text_field :name %><br>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
 
   <h3>Add to User</h3>
   <%= f.collection_select :user_id, User.all, :id, :name %><br>
 
-  <h3>Add a Product</h3>
-  <%= f.collection_select :product_id, Product.all, :id, :name %><br>
-
+  <h3>Add Products</h3>
+  <table>
+    <tr class="header_container">
+      <th class="header"></th>
+      <th class="header">Name:</th>
+    </tr>
+    <%= f.collection_check_boxes :product_ids, Product.all, :id, :name do |b| %>
+      <tr class="data_container">
+        <td class="data"> <%= b.check_box %> </td>
+        <td> <%= b.text %> </td>
+      </tr>
+    <% end %><br>
+  </table>
   <br><%= f.submit %>
 <% end %><br>
 
-<%= button_to "Back", warehouses_path, method: :get, action: :index %>
+<%= button_to "Back", warehouses_path, method: :get%>

@@ -1,5 +1,5 @@
-<h3>Edit Product Form</h3>
+<h1>Edit <%= @product.name %></h1>
 
-<%= form_for @product do |f| %>
-  <%= render partial: 'form' %>
-<% end %>
+<%= render 'form' %>
+
+<%= button_to "Back", warehouse_products_path(@warehouse), method: :get%>

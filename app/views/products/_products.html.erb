@@ -1,24 +1,21 @@
-<h1>Products</h1>
-
 <table>
   <tr class="header-container">
     <th class="header">Name</th>
     <th class="header">Description</th>
     <th class="header">Price</th>
     <th class="header">Quantity</th>
-    <th class="header"><%= button_to "+", new_warehouse_product_path , method: :get, action: :new %></th>
+    <th class="header"><%= button_to "+" %></th>
   </tr>
-  <% @products.each do |p| %>
-    <tr class="data-row">
-      <td class="data"><%= link_to p.name, product_path(p), method: :get, action: :show %></td>
-      <td class="data"><%= p.description %></td>
-      <td class="data"><%= number_to_currency(p.price) %></td>
-      <td class="data"><%= p.quantity %></td>
-      <td class="data"><%= button_to "Show", product_path(p)%></td>
-      <td class="data"><%= button_to "Edit", edit_product_path(p) %></td>
-      <td class="data">
-        <%= button_to "Delete", product_path(p), method: :delete, form_class: "delete-btn" %>
-      </td>
-    </tr>
-  <% end %>
-</table>
+  <tr class="data-row">
+    <td class="data"><%= @product.name %></td>
+    <td class="data"><%= @product.description %></td>
+    <td class="data"><%= number_to_currency(@product.price) %></td>
+    <td class="data"><%= @product.quantity%></td>
+    <td class="data"><%= button_to "Edit", edit_warehouse_product_path(@warehouse, @product), method: :get %></td>
+    <td class="data">
+      <%= button_to "Delete", warehouse_product_path(@warehouse, @product), method: :delete %>
+    </td>
+  </tr>
+</table><br>
+
+<%= button_to "Back", warehouse_products_path(@warehouse), method: :get%> 
