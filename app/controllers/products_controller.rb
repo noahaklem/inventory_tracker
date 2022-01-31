@@ -3,7 +3,7 @@ class ProductsController < ApplicationController
   def index
     if params[:warehouse_id]
       @warehouse = Warehouse.find(params[:warehouse_id])
-      @products = Warehouse.find(params[:warehouse_id]).products
+      @products = Warehouse.find(params[:warehouse_id]).products.uniq
     else
       @products = Product.all
     end
@@ -51,7 +51,9 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-    Product.find(params[:id]).destroy
+    warehouse = Warehouse.find(params[:warehouse_id])
+    product = Product.find(params[:id])
+    warehouse.products.delete(product)
     redirect_to warehouse_products_path(params[:warehouse_id])
   end
 

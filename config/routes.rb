@@ -1,13 +1,22 @@
 Rails.application.routes.draw do
+  root "sessions#login"
 
-  root 'warehouses#index'
+  post "/login", to: "sessions#login"
 
+  delete "/logout", to: "sessions#destroy"
+
+  get "/signup", to: "users#new"
+
+  post "/signup", to: "users#create"
   # user routes
-  resources :users, only: [:new]
+  resources :users, only: [:create]
+
   # product routes
   resources :products
+
   # warehouse routes
-  resources :warehouses, only: [:new, :create, :index, :edit, :update, :destroy] do 
+  resources :warehouses do 
     resources :products
   end
+
 end

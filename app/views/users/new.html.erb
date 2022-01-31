@@ -1,0 +1,17 @@
+<h1>Sign Up</h1>
+
+<%= form_with model: @user do |f| %>
+<div>
+  <%= f.label :name %><br>
+  <%= f.text_field :name%>
+</div>
+<div>
+  <%= f.label :email %><br>
+  <%= f.email_field :email %>
+</div>
+<div>
+  <%= f.label :password %><br>
+  <%= f.password_field :password %>
+</div>
+  <%= f.submit %>
+<% end %>

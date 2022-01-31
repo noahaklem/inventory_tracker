@@ -1,7 +1,7 @@
 class WarehousesController < ApplicationController
-  # set a before_action for User
+
   def index
-    @warehouses = Warehouse.all
+    @warehouses = current_user.warehouses
   end
 
   def show 
@@ -13,7 +13,7 @@ class WarehousesController < ApplicationController
   end
 
   def create
-    @warehouse = Warehouse.new(warehouse_params)
+    @warehouse = current_user.warehouses.build(warehouse_params)
     if @warehouse.valid?
       @warehouse.save
       redirect_to warehouses_path
@@ -40,6 +40,7 @@ class WarehousesController < ApplicationController
   private
   
   def warehouse_params
-    params.require(:warehouse).permit(:name, :user_id, product_ids: [])
+    params.require(:warehouse).permit(:name,:user_id, product_ids: [])
   end
+
 end
