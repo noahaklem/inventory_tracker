@@ -1,16 +1,28 @@
-<h1>Warehouses</h1>
+<% stylesheet_link_tag 'warehouses' %>
 
 <table>
-  <tr class="header-container">
-    <th class="header">Name</th>
-    <th class="header"><%= button_to "+", new_warehouse_path, method: :get %></th>
-  </tr>
-  <% @warehouses.each do |w| %>
-    <tr class="data-row">
-      <td class="data"><%= w.name %></td>
-      <td class="data"><%= button_to "Show Products", warehouse_products_path(w), method: :get %></td>
-      <td class="data"><%= button_to "Edit", edit_warehouse_path(w), method: :get %></td>
-      <td class="data"><%= button_to "Delete", warehouse_path(w), method: :delete %></td>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th><%= button_to "+", new_warehouse_path, method: :get %></th>
     </tr>
-  <% end %>
+  </thead>
+  <tbody>
+    <% @warehouses.each do |w| %>
+      <tr>
+        <td><%= w.name %></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td><%= button_to "Products", warehouse_products_path(w), method: :get %></td>
+        <td><%= button_to "Edit", edit_warehouse_path(w), method: :get %></td>
+        <td><%= button_to "Delete", warehouse_path(w), method: :delete %></td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>

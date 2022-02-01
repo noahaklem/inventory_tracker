@@ -1,18 +1,32 @@
-<h1>Login</h1>
+<% stylesheet_link_tag 'forms' %>
 
-<%= form_with url: "/login" do |f| %>
-<div>
-  <%= f.label :name %><br>
-  <%= f.text_field :name%>
-</div>
-<div>
-  <%= f.label :email %><br>
-  <%= f.email_field :email %>
-</div>
-<div>
-  <%= f.label :password %><br>
-  <%= f.password_field :password %>
-</div>
-  <%= f.submit %>
 
-<% end %>
+
+<div class='container'>
+  
+  <div class="form-container">
+    <div class="title">
+      <h1>LOGIN</h1>
+    </div>
+    <div class="form">
+      <%= form_with url: "/login" do |f| %>
+        <div class="form-section-container">
+          <%= f.label :name, class: "label" %><br>
+          <%= f.text_field :name, class: "input", placeholder: "Your name..." %>
+        </div>
+        <div class="form-section-container">
+          <%= f.label :email, class: "label" %><br>
+          <%= f.email_field :email, class: "input", placeholder: "Your email..." %>
+        </div>
+        <div class="form-section-container">
+          <%= f.label :password, class: "label" %><br>
+          <%= f.password_field :password, class: "input" %>
+        </div>
+        <div class="form-section-container">
+          <%= f.submit "LOGIN", class: 'button' %>
+          <%= link_to "SIGN UP", signup_path, method: :get %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

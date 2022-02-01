@@ -1,21 +1,24 @@
 <table>
-  <tr class="header-container">
-    <th class="header">Name</th>
-    <th class="header">Description</th>
-    <th class="header">Price</th>
-    <th class="header">Quantity</th>
-    <th class="header"><%= button_to "+" %></th>
-  </tr>
-  <tr class="data-row">
-    <td class="data"><%= @product.name %></td>
-    <td class="data"><%= @product.description %></td>
-    <td class="data"><%= number_to_currency(@product.price) %></td>
-    <td class="data"><%= @product.quantity%></td>
-    <td class="data"><%= button_to "Edit", edit_warehouse_product_path(@warehouse, @product), method: :get %></td>
-    <td class="data">
-      <%= button_to "Delete", warehouse_product_path(@warehouse, @product), method: :delete %>
-    </td>
-  </tr>
-</table><br>
-
-<%= button_to "Back", warehouse_products_path(@warehouse), method: :get%> 
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Price</th>
+      <th>Qty</th>
+      <th></th>
+      <th></th>
+      <th><%= button_to "Back", warehouse_products_path(@warehouse), method: :get, class: "back" %> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @product.name %></td>
+      <td><%= @product.description %></td>
+      <td><%= number_to_currency(@product.price) %></td>
+      <td><%= @product.quantity%></td>
+      <td><%= button_to "Edit", edit_warehouse_product_path(@warehouse, @product), method: :get %></td>
+      <td></td>
+      <td><%= button_to "Delete", warehouse_product_path(@warehouse, @product), method: :delete %></td>
+    </tr>
+  </body>
+</table>
