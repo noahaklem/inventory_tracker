@@ -1,14 +1,17 @@
 class SessionsController < ApplicationController
-  skip_before_action :login_required, only: [:login]
+  skip_before_action :login_required, only: [:new, :create]
+
+  def new
+  end
   
-  def login
+  def create
     @user = User.find_by(email: params[:email])
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
       redirect_to warehouses_path
     else
       flash[:notice] = "Hmm, that wasn't right. Try again."
-      render "login"
+      render :new
     end
   end
 

@@ -27,17 +27,7 @@ class Product < ApplicationRecord
   def make_title_case
     self.name = self.name.titlecase
   end
-  
-  # def self.by_warehouse(warehouse)
-  #   where(warehouse: warehouse)
-  # end
 
-  # def warehouse_id=(id)
-  #   self.warehouse = Warehouse.find(id)
-  # end
-
-  # def warehouse_id
-  #   self.warehouse ? self.warehouse.name : nil
-  # end
+  # scope :alpha, -> {order("name")}
 
 end

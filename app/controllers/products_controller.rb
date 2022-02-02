@@ -15,7 +15,8 @@ class ProductsController < ApplicationController
   end
 
   def create
-    @product = Product.new(product_params)
+    byebug
+    @product = current_user.products.build(product_params)
     if @product.valid?
       @product.save
       redirect_to warehouse_products_path
@@ -60,6 +61,6 @@ class ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product).permit(:name, :price, :description, :quantity, :user_id, warehouse_ids: [] )
+    params.require(:product).permit(:name, :price, :description, :quantity, :user_id, :warehouse_id )
   end
 end

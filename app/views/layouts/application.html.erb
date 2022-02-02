@@ -11,11 +11,11 @@
   <body>
   <%= yield %>
   <footer>
-  <div class="container">
-    <% if logged_in? %>
-      <%= button_to "Logout", logout_path, method: :delete, class: "logout" %>
-    <% end %>
-  </div>
+    <div class="container">
+      <% if logged_in? %>
+        <%= button_to "Logout", logout_path, method: :delete, class: "logout" %>
+      <% end %>
+    </div>
   </footer>
   </body>
 </html>

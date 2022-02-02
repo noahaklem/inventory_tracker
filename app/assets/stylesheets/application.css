@@ -44,3 +44,119 @@
   color: black;
   border: 2p solid black;
 }
+
+.container {
+  display: flex;
+  min-height: 500px;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: space-around;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.form-container {
+  justify-content: center;
+  margin: 10px;
+  padding: 10px;
+  min-height: 300px;
+  width: 300px;
+  border: 10px solid lightblue;
+  border-radius: 10px 10px 10px 10px;
+}
+
+.title {
+  color: black;
+  text-align: center;
+  margin: 10px;
+}
+
+.form {
+  margin: 10px;
+  padding: 5px;
+}
+
+.form-section-container {
+  margin: 10px;
+}
+
+.label {
+  text-align: left;
+  font-size: 20px;
+}
+
+.input {
+  width: 95%;
+  height: 30px;
+  border: 2px solid lightblue;
+  border-radius: 10px;
+}
+
+.button {
+  font-family: 'Courier New', Courier, monospace;
+  background-color: black;
+  color: white;
+  margin: 5px;
+  border: 2px solid black;
+  border-radius: 5px;
+  width: 100px;
+  height: 40px;
+}
+
+.button:hover {
+  cursor: pointer;
+  border: 2px solid black;
+  color: black;
+  background-color: white;
+  
+}
+
+table {
+  font-family: 'Courier New', Courier, monospace;
+  width: 100%;
+  padding: 10px;
+  table-layout: fixed;
+  border-collapse: collapse;
+  border: 2px solid lightblue;
+}
+
+thead th:nth-child(1){
+  width: 25%;
+}
+
+thead th:nth-child(2){
+  width: 35%;
+}
+
+thead th:nth-child(3){
+  width: 7.5%;
+}
+
+thead th:nth-child(4){
+  width: 5%;
+}
+
+thead th:nth-child(5){
+  width: 7.5%;
+}
+
+thead th:nth-child(6){
+  width: 7.5%;
+}
+
+thead th:nth-child(7){
+  width: 7.5%;
+}
+
+th {
+  padding: 10px;
+  text-align: start;
+  font-size: 20px;
+  border-bottom: 2px solid black;
+}
+
+td {
+  padding: 5px;
+  text-align: start;
+  font-size: 12px;
+  border-bottom: 2px solid black;
+}

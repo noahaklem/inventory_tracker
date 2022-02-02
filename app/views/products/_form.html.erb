@@ -7,6 +7,7 @@
     </div>
     <div class="form">
       <%= form_for [@warehouse, @product] do |f| %>
+        <%= f.hidden_field %>
         <div class="form-section-container">
           <%= f.label :name, class: "label" %>
           <%= f.text_field :name, class: "input" %>
