@@ -1,0 +1,9 @@
+<div class="errors-container">
+  <% if @product.errors.any? %>
+    <% @product.errors.full_messages.each do |msg| %>
+      <div>
+        <%= msg %>
+      </div>
+    <% end %>
+  <% end %>
+</div>

@@ -1,4 +1,4 @@
-
+<h1>Warehouses</h1>
 <table>
   <thead>
     <tr>
@@ -6,9 +6,9 @@
       <th></th>
       <th></th>
       <th></th>
+      <th><%= button_to "All Products", products_path, method: :get %></th>
+      <th><%= button_to "+", new_warehouse_path, method: :get, class: "new-button" %></th>
       <th></th>
-      <th></th>
-      <th><%= button_to "+", new_warehouse_path, method: :get %></th>
     </tr>
   </thead>
   <tbody>

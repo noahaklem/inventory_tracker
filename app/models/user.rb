@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+
   has_many :warehouses
   has_many :products, through: :warehouses
 
@@ -8,4 +9,9 @@ class User < ApplicationRecord
   validates :name, presence: true
 
   has_secure_password
+
+  # validate :is_title_case
+  
+  # before_validation :make_title_case
+
 end

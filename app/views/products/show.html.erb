@@ -1,5 +1,29 @@
+<h1><%= @product.name %></h1>
 
-<%= render 'products' %>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Price</th>
+      <th>Qty</th>
+      <th></th>
+      <th></th>
+      <th><%= button_to "Back", warehouse_products_path(@warehouse), method: :get, class: "back" %> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @product.name %></td>
+      <td><%= @product.description %></td>
+      <td><%= number_to_currency(@product.price) %></td>
+      <td><%= @product.quantity%></td>
+      <td></td>
+      <td><%= button_to "Edit", edit_warehouse_product_path(@warehouse, @product), method: :get %></td>
+      <td><%= button_to "Delete", warehouse_product_path(@warehouse, @product), method: :delete %></td>
+    </tr>
+  </body>
+</table>
 
 
 

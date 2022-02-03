@@ -1,4 +1,3 @@
-<% stylesheet_link_tag 'forms' %>
 
 <div class="container">
   <div class="form-container">
@@ -9,6 +8,25 @@
         <div class="form-section-container">
           <%= f.label :name, class: "label" %>
           <%= f.text_field :name, class: "input" %>
+        </div>
+        <div class="form-section-container">
+          <h3>Select a Products for this Warehouse</h3>
+          <%= f.collection_check_boxes :product_ids, Product.all, :id, :name do |b| %>
+            <%= b.check_box %><%= b.label %><br>
+          <% end %>
+        </div>
+        <div class="form-section-container">
+        <h3>Create a New Product</h3>
+        <%= fields_for @product, @warehouse.products.build do |product_fields| %>
+          <%= product_fields.label :name %><br>
+          <%= product_fields.text_field :name %><br>
+          <%= product_fields.label :price %><br>
+          <%= product_fields.number_field :price, min: 1 %><br>
+          <%= product_fields.label :description %><br>
+          <%= product_fields.text_area :description %><br>
+          <%= product_fields.label :quantity %><br>
+          <%= product_fields.number_field :quantity, min: 1 %><br>
+        <% end %>
         </div>
         <div class="form-section-container">
           <%= f.submit "CREATE", class: "button" %>

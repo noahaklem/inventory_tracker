@@ -1,12 +1,11 @@
 class Product < ApplicationRecord
+
   belongs_to :user
   has_many :warehouse_products
   has_many :warehouses, through: :warehouse_products
-  validate :is_title_case
 
-  validates :name, :price, presence: true
+  validates :name, :price, :quantity, presence: true
   validates :name, uniqueness: true
-  validates :name, format: {without: /[0-9]/, message: "does not allow numbers"}
 
   validates :price, numericality: true
 
@@ -14,20 +13,10 @@ class Product < ApplicationRecord
 
   validates :quantity, numericality: true
   
-  before_validation :make_title_case
-
-  private
-
-  def is_title_case
-    if name.split.any?{|w| w[0].upcase != w[0]}
-      errors.add(:name, "Name must be in title case.")
-    end
-  end
-
-  def make_title_case
-    self.name = self.name.titlecase
-  end
+  # validate :is_title_case
+  
+  # before_validation :make_title_case
 
   # scope :alpha, -> {order("name")}
-
+  
 end

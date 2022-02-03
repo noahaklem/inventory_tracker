@@ -5,7 +5,7 @@ class WarehousesController < ApplicationController
   end
 
   def show 
-    
+    redirect_to warehouse_products_path(params[:warehouse_id])
   end
 
   def new
@@ -16,8 +16,10 @@ class WarehousesController < ApplicationController
     @warehouse = current_user.warehouses.build(warehouse_params)
     if @warehouse.valid?
       @warehouse.save
+      flash[:notice] = "Warehouse created!"
       redirect_to warehouses_path
     else
+      flash[:notice] = "Opps something went wrong."
       redirect_to new_warehouse_path
     end
   end
@@ -40,7 +42,7 @@ class WarehousesController < ApplicationController
   private
   
   def warehouse_params
-    params.require(:warehouse).permit(:name,:user_id, product_ids: [])
+    params.require(:warehouse).permit(:name,:user_id, product_ids: [], product_attributes: [:name, :price, :description, :quantity])
   end
 
 end

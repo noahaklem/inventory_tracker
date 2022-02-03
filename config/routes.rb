@@ -17,9 +17,13 @@ Rails.application.routes.draw do
   resources :users, only: [:create]
 
   # product routes
-  resources :products
-
+  get "/all-products", to: "products#index", as: "products"
+  post "/all-products", to: "products#create"
+  
+  resources :products, only: [:new, :create, :edit, :update, :destroy]
+  
   # warehouse routes
+
   resources :warehouses do 
     resources :products
   end

@@ -2,26 +2,30 @@ class ProductsController < ApplicationController
 
   def index
     if params[:warehouse_id]
-      @warehouse = Warehouse.find(params[:warehouse_id])
+      @warehouse = current_warehouse
       @products = Warehouse.find(params[:warehouse_id]).products.uniq
     else
-      @products = Product.all
+      @products = current_user.products.uniq
     end
   end
 
   def new
-    @warehouse = Warehouse.find(params[:warehouse_id])
     @product = Product.new
   end
 
   def create
-    byebug
-    @product = current_user.products.build(product_params)
+    @product = Product.new(product_params)
     if @product.valid?
       @product.save
-      redirect_to warehouse_products_path
+      flash[:notice] = "Product created successfully!"
+      if params[:warehouse_id]
+        redirect_to warehouse_products_path(params[:warehouse_id])
+      else
+        redirect_to products_path
+      end
     else
-      redirect_to new_warehouse_product_path
+      flash[:notice] = "Product not saved."
+      render :new
     end
   end
 
@@ -45,22 +49,26 @@ class ProductsController < ApplicationController
   end
 
   def update
-    warehouse = Warehouse.find(params[:warehouse_id])
     @product = Product.find(params[:id])
     @product.update(product_params)
-    redirect_to warehouse_products_path(warehouse)
+    redirect_to products_path
   end
 
   def destroy
-    warehouse = Warehouse.find(params[:warehouse_id])
-    product = Product.find(params[:id])
-    warehouse.products.delete(product)
-    redirect_to warehouse_products_path(params[:warehouse_id])
+    if params[:warehouse_id]
+      warehouse = Warehouse.find(params[:warehouse_id])
+      product = Product.find(params[:id])
+      warehouse.products.delete(product)
+      redirect_to warehouse_products_path(params[:warehouse_id])
+    else
+      Product.find(params[:id]).delete
+      redirect_to products_path
+    end
   end
 
   private
 
   def product_params
-    params.require(:product).permit(:name, :price, :description, :quantity, :user_id, :warehouse_id )
+    params.require(:product).permit(:name, :price, :description, :quantity, :user_id, warehouse_ids: [])
   end
 end

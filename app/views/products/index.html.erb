@@ -1,16 +1,21 @@
-<h1>Products for <%= @warehouse.name %></h1>
 
+<% if current_warehouse %>
+  <%= render 'products' %>
+<% else %>
+<h1>Products</h1>
 <table>
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Price</th>
-      <th>Qty</th>
-      <th></th>
-      <th><%= button_to "+", new_warehouse_product_path, method: :get %></th>
+      <th>
+      Name: 
+        
+      </th>
+      <th>Description:</th>
+      <th>Price:</th>
+      <th>Qty:</th>
+      <th>Located:</th>
+      <th><%= button_to "+", new_product_path, method: :get, class: "new-button" %></th>
       <th><%= button_to "Back", warehouses_path, method: :get, class: "back" %></th>
-      
     </tr>
   </thead>
   <tbody>
@@ -20,14 +25,20 @@
       <td><%= p.description %></td>
       <td><%= number_to_currency(p.price) %></td>
       <td><%= p.quantity %></td>
-      <td><%= button_to "Go To", warehouse_product_path(@warehouse, p), method: :get %></td>
-      <td><%= button_to "Edit", edit_warehouse_product_path(@warehouse, p), method: :get %></td>
-      <td><%= button_to "Delete", warehouse_product_path(@warehouse, p), method: :delete %></td>
+      <td>
+        <% p.warehouses.each do |w| %>
+          <div>
+            <%= link_to w.name, warehouse_products_path(w), method: :get %>
+          </div>
+        <% end %>
+      </td>
+      <td><%= link_to "Edit", edit_product_path(p), method: :get %></td>
+      <td><%= button_to "Delete", product_path(p), method: :delete, class: "delete-button" %></td>
     </tr>
     <% end %>
   </body>
 </table>
-
+<% end %>
 
 
 

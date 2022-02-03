@@ -1,3 +1,43 @@
-<h1>Edit <%= @product.name %></h1>
 
-<%= render 'form' %>
+<%= render "errors/errors" %>
+
+<% if current_warehouse %>
+  <%= render 'form' %>
+<% else %>
+<h1>Edit <%= @product.name %></h1>
+<div class="container">
+  <div class="form-container">
+    <div class="form">
+      <%= form_for [@product] do |f| %>
+        <%= f.hidden_field :user_id, value: current_user.id %>
+        <div class="form-section-container">
+          <h3>Select Warehouse</h3>
+          <%= f.collection_check_boxes :warehouse_ids, current_user.warehouses.all, :id, :name do |b| %>
+            <%= b.check_box %><%= b.label %><br>
+          <% end %>
+        </div>
+        <div class="form-section-container <%="form-section-with-errors" if @product.errors[:name].any? %>">
+          <%= f.label :name, class: "label" %>
+          <%= f.text_field :name, class: "input" %>
+        </div>
+        <div class="form-section-container <%="form-section-with-errors" if @product.errors[:price].any? %>">
+          <%= f.label :price, class: "label"%>
+          <%= f.number_field :price, min: 1, class: "input" %>
+        </div>
+        <div class="form-section-container <%="form-section-with-errors" if @product.errors[:description].any? %>">
+          <%= f.label :description, class: "label" %>
+          <%= f.text_area :description, class: "input" %>
+        </div>
+        <div class="form-section-container <%="form-section-with-errors" if @product.errors[:quantity].any? %>">
+          <%= f.label :quantity, class: "label" %>
+          <%= f.number_field :quantity, min: 1, class: "input"%>
+        </div>
+        <div class="form-section-container">
+          <%= f.submit "SUBMIT", class: "button" %>
+          <%= link_to "Back", products_path, method: :get %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<% end %>
