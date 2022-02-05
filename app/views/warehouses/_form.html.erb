@@ -1,7 +1,11 @@
 
 <div class="container">
   <div class="form-container">
+  <% if flash[:notice] %>
+    <%= render "errors/flash" %>
+  <% end %>
     <div class="title">
+      <h3>Create a Warehouse</h3>
     </div>
     <div class="form">
       <%= form_for @warehouse do |f| %>
@@ -15,7 +19,7 @@
       <div class="form-section-container">
         <h3>Select Products for this Warehouse</h3>
         <% if current_user.products == [] %>
-          <h4>You have no products</h4>
+          <h5>You have no products</h5>
         <% else %>
           <%= f.collection_check_boxes :product_ids, current_user.products, :id, :name do |b| %>
             <%= b.check_box %><%= b.label %><br>

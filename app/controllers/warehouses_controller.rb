@@ -4,10 +4,6 @@ class WarehousesController < ApplicationController
     @warehouses = current_user.warehouses
   end
 
-  def show 
-    redirect_to warehouse_products_path(params[:warehouse_id])
-  end
-
   def new
     @user = User.find(session[:user_id])
     @warehouse = Warehouse.new

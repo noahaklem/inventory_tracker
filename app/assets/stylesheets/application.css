@@ -124,7 +124,7 @@ thead th:nth-child(1){
 }
 
 thead th:nth-child(2){
-  width: 35%;
+  width: 30%;
 }
 
 thead th:nth-child(3){
@@ -132,11 +132,11 @@ thead th:nth-child(3){
 }
 
 thead th:nth-child(4){
-  width: 5%;
+  width: 7.5%;
 }
 
 thead th:nth-child(5){
- width: 10%;
+ width: 12.5%;
 }
 
 thead th:nth-child(6){
@@ -165,11 +165,15 @@ td {
   background-color: palevioletred;
 }
 
-.errors-container {
+div.errors-container, div.flash-errors {
   font-family: 'Courier New', Courier, monospace;
   width: 100%;
   background-color: palevioletred;
   border: 2px solid black;
+}
+
+.flash-text {
+  text-align: center;
 }
 
 .new-button {

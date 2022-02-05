@@ -3,20 +3,35 @@
   <%= render 'products' %>
 <% else %>
 <h1>Products</h1>
+<%= render "errors/flash" %>
 <table>
   <thead>
     <tr>
-      <th>
-      Name: 
-        
-      </th>
+      <th>Name:</th>
       <th>Description:</th>
       <th>Price:</th>
       <th>Qty:</th>
-      <th>Located:</th>
+      <th>Warehouse:</th>
       <th><%= button_to "+", new_product_path, method: :get, class: "new-button" %></th>
       <th><%= button_to "Back", warehouses_path, method: :get, class: "back" %></th>
     </tr>
+  </thead>
+  <thead>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th> 
+    <%= form_tag("/all-products", method: :get) do %>
+      <%= select_tag "warehouse", options_from_collection_for_select(@warehouses, "id", "name"), include_blank: true %>
+      <%= submit_tag "Filter" %>
+    <% end %>
+    </th>
+  <th></th>
+  <th></th>
+</tr>
+ 
   </thead>
   <tbody>
     <% @products.each do |p| %>

@@ -1,6 +1,9 @@
 
 <div class="container">
   <div class="form-container">
+  <% if flash[:notice] %>
+    <%= render "errors/flash" %>
+  <% end %>
     <div class="title">
       <h1>SIGN UP</h1>
     </div>
@@ -27,6 +30,7 @@
         
         <div class="form-section-container">
           <%= f.submit "SIGN UP", class: 'button'%>
+          OR
           <%= link_to "LOGIN", login_path, method: :get %>
         </div>
       <% end %>

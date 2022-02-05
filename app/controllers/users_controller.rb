@@ -11,7 +11,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect_to warehouses_path
     else
-      flash[:notice] = "Nope"
+      flash[:notice] = "Nope, something is not right."
       render "new"
     end
   end

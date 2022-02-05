@@ -17,6 +17,10 @@ class Product < ApplicationRecord
   
   # before_validation :make_title_case
 
-  # scope :alpha, -> {order("name")}
+  scope :alpha, -> {order("name")}
+
+  def self.by_warehouse(warehouse_id)
+    Warehouse.find(warehouse_id).products
+  end
   
 end

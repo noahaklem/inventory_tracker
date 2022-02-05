@@ -1,9 +1,12 @@
 class ProductsController < ApplicationController
 
   def index
-    if params[:warehouse_id]
-      @warehouse = current_warehouse
-      @products = Warehouse.find(params[:warehouse_id]).products.uniq
+    @warehouses = current_user.warehouses
+
+    if !params[:warehouse].blank?
+      @products = Product.by_warehouse(params[:warehouse]).alpha
+    elsif !params[:warehouse_id].blank?
+      @products = current_warehouse.products
     else
       @products = current_user.products.uniq
     end
@@ -25,7 +28,7 @@ class ProductsController < ApplicationController
       end
     else
       flash[:notice] = "Product not saved."
-      render :new
+      render "products/new"
     end
   end
 
@@ -38,10 +41,10 @@ class ProductsController < ApplicationController
     if params[:warehouse_id]
       @warehouse = Warehouse.find(params[:warehouse_id])
       if @warehouse.nil?
-        redirect_to warehouses_path, alert: "Warehouse not found."
+        redirect_to warehouses_path, flash[:notice] = "Warehouse not found."
       else
         @product = @warehouse.products.find_by(id: params[:id])
-        redirect_to warehouse_products_path(@warehouse), alert: "Product not found" if @product.nil?
+        redirect_to warehouse_products_path(@warehouse), flash[:notice] = "Product not found" if @product.nil?
       end
     else
       @product = Product.find(params[:id])
