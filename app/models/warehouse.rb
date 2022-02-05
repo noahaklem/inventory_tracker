@@ -9,12 +9,12 @@ class Warehouse < ApplicationRecord
 
   validates :name, presence: true, uniqueness: true
   
-  def products_attributes=(product_attributes)
-    product_attributes.values.each do |product_attribute|
-      product = Product.find_or_create_by(product_attribute)
-      self.products << product
-    end
-  end
+  # def products_attributes=(product_attributes)
+  #   product_attributes.values.each do |product_attribute|
+  #     product = Product.find_or_create_by(product_attribute)
+  #     self.products << product
+  #   end
+  # end
 
   private
 

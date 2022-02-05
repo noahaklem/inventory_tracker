@@ -28,32 +28,6 @@
       </div>
 
       <div class="form-section-container">
-        <h3>Create a New Product</h3>
-
-        <%= f.fields_for :products, @warehouse.products.build do |product_fields| %>
-          <%= product_fields.hidden_field :user_id, value: @user.id %>
-          <div class="form-section-container">
-            <%= product_fields.label :name, class: "label" %> 
-            <%= product_fields.text_field :name, class: "input" %>
-          </div>
-
-          <div class="form-section-container">
-            <%= product_fields.label :price, class: "label" %> 
-            <%= product_fields.number_field :price, min: 1, class: "input" %>
-          </div>
-
-          <div class="form-section-container">
-            <%= product_fields.label :description, class: "label" %> 
-            <%= product_fields.text_area :description, class: "input" %>
-          </div>
-
-          <div class="form-section-container">
-            <%= product_fields.label :quantity, class: "label" %> 
-            <%= product_fields.number_field :quantity, class: "input" %>
-          </div>
-        <% end %>
-      </div>
-      <div class="form-section-container">
         <%= f.submit "CREATE", class: "button" %>
         <%= link_to "Back", warehouses_path %>
       </div>
