@@ -9,6 +9,7 @@ class WarehousesController < ApplicationController
   end
 
   def new
+    @user = User.find(session[:user_id])
     @warehouse = Warehouse.new
   end
 
@@ -20,7 +21,7 @@ class WarehousesController < ApplicationController
       redirect_to warehouses_path
     else
       flash[:notice] = "Opps something went wrong."
-      redirect_to new_warehouse_path
+      render :new
     end
   end
 
@@ -42,7 +43,7 @@ class WarehousesController < ApplicationController
   private
   
   def warehouse_params
-    params.require(:warehouse).permit(:name,:user_id, product_ids: [], product_attributes: [:name, :price, :description, :quantity])
+    params.require(:warehouse).permit(:name,:user_id, product_ids: [], products_attributes: [:name, :price, :description, :quantity, :user_id])
   end
 
 end

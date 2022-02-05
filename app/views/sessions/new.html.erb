@@ -1,30 +1,38 @@
 
 <div class='container'>
-  
   <div class="form-container">
     <div class="title">
       <h1>LOGIN</h1>
     </div>
     <div class="form">
       <%= form_with url: "/login" do |f| %>
+
         <div class="form-section-container">
           <%= f.label :name, class: "label" %><br>
           <%= f.text_field :name, class: "input", placeholder: "Name..." %>
         </div>
+
         <div class="form-section-container">
           <%= f.label :email, class: "label" %><br>
           <%= f.email_field :email, class: "input", placeholder: "Email..." %>
         </div>
+
         <div class="form-section-container">
           <%= f.label :password, class: "label" %><br>
           <%= f.password_field :password, class: "input",
           placeholder: "Password..." %>
         </div>
+
         <div class="form-section-container">
           <%= f.submit "LOGIN", class: 'button' %>
+          OR
           <%= link_to "SIGN UP", signup_path, method: :get %>
         </div>
       <% end %>
+
+      <div class="form-section-container">
+        <%= button_to "Login with Google", "/auth/google_oauth2" %>
+      </div>
     </div>
   </div>
 </div>

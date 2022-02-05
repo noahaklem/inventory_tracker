@@ -5,33 +5,54 @@
     </div>
     <div class="form">
       <%= form_for @warehouse do |f| %>
-        <div class="form-section-container">
-          <%= f.label :name, class: "label" %>
-          <%= f.text_field :name, class: "input" %>
-        </div>
-        <div class="form-section-container">
-          <h3>Select a Products for this Warehouse</h3>
-          <%= f.collection_check_boxes :product_ids, Product.all, :id, :name do |b| %>
+      <%= render "errors/errors", object: @warehouse %>
+
+      <div class="form-section-container">
+        <%= f.label :name, class: "label" %>
+        <%= f.text_field :name, class: "input" %>
+      </div>
+
+      <div class="form-section-container">
+        <h3>Select Products for this Warehouse</h3>
+        <% if current_user.products == [] %>
+          <h4>You have no products</h4>
+        <% else %>
+          <%= f.collection_check_boxes :product_ids, current_user.products, :id, :name do |b| %>
             <%= b.check_box %><%= b.label %><br>
           <% end %>
-        </div>
-        <div class="form-section-container">
-        <h3>Create a New Product</h3>
-        <%= fields_for @product, @warehouse.products.build do |product_fields| %>
-          <%= product_fields.label :name %><br>
-          <%= product_fields.text_field :name %><br>
-          <%= product_fields.label :price %><br>
-          <%= product_fields.number_field :price, min: 1 %><br>
-          <%= product_fields.label :description %><br>
-          <%= product_fields.text_area :description %><br>
-          <%= product_fields.label :quantity %><br>
-          <%= product_fields.number_field :quantity, min: 1 %><br>
         <% end %>
-        </div>
-        <div class="form-section-container">
-          <%= f.submit "CREATE", class: "button" %>
-          <%= link_to "Back", warehouses_path %>
-        </div>
+      </div>
+
+      <div class="form-section-container">
+        <h3>Create a New Product</h3>
+
+        <%= f.fields_for :products, @warehouse.products.build do |product_fields| %>
+          <%= product_fields.hidden_field :user_id, value: @user.id %>
+          <div class="form-section-container">
+            <%= product_fields.label :name, class: "label" %> 
+            <%= product_fields.text_field :name, class: "input" %>
+          </div>
+
+          <div class="form-section-container">
+            <%= product_fields.label :price, class: "label" %> 
+            <%= product_fields.number_field :price, min: 1, class: "input" %>
+          </div>
+
+          <div class="form-section-container">
+            <%= product_fields.label :description, class: "label" %> 
+            <%= product_fields.text_area :description, class: "input" %>
+          </div>
+
+          <div class="form-section-container">
+            <%= product_fields.label :quantity, class: "label" %> 
+            <%= product_fields.number_field :quantity, class: "input" %>
+          </div>
+        <% end %>
+      </div>
+      <div class="form-section-container">
+        <%= f.submit "CREATE", class: "button" %>
+        <%= link_to "Back", warehouses_path %>
+      </div>
       <% end %>
     </div>
   </div>

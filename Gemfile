@@ -59,6 +59,8 @@ gem "faker", "~> 2.19"
 
 gem "bcrypt", "~> 3.1"
 
-gem "omniauth", "~> 2.0"
-gem "omniauth-github", "~> 2.0"
-gem "omniauth-rails_csrf_protection", "~> 1.0"
+gem "omniauth-rails_csrf_protection"
+gem "omniauth"
+gem "omniauth-google-oauth2", "~> 1.0"
+
+gem "dotenv-rails", "~> 2.7"

@@ -1,6 +1,6 @@
 <div class="errors-container">
-  <% if @product.errors.any? %>
-    <% @product.errors.full_messages.each do |msg| %>
+  <% if object.errors.any? %>
+    <% object.errors.full_messages.each do |msg| %>
       <div>
         <%= msg %>
       </div>

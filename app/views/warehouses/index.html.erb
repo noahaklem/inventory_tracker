@@ -20,7 +20,7 @@
         <td></td>
         <td><%= button_to "Products", warehouse_products_path(w), method: :get %></td>
         <td><%= button_to "Edit", edit_warehouse_path(w), method: :get %></td>
-        <td><%= button_to "Delete", warehouse_path(w), method: :delete %></td>
+        <td><%= button_to "Delete", warehouse_path(w), method: :delete, class: "delete-button" %></td>
       </tr>
     <% end %>
   </tbody>
