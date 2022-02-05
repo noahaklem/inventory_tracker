@@ -21,7 +21,16 @@ class SessionsController < ApplicationController
   end
 
   def omniauth
-    byebug
+    @user = User.find_or_create_by(email: auth["info"]["email"]) do |u|
+      u.name = auth["info"]["name"]
+      u.password = SecureRandom.hex(10)
+    end
+    if @user.persisted?
+      session[:user_id] = @user.id
+      redirect_to warehouses_path
+    else
+      redirect_to root_path
+    end
   end
 
   def destroy
